@@ -23,12 +23,22 @@ router.get('/', (req, res) => {
 // Create
 router.post('/createUser', (req, res) => {
     // console.log(req.body);
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((data) => {
+        .then((user) => {
             // console.log(data); // Responde con el usuario 
-            res.status(201).send('created') // 201 created
+            firebase.auth().currentUser.updateProfile({
+                displayName: username
+            })
+                .then( () => {
+                    console.log('ok ok'); // note corregir mejor esto :D
+                })
+                .catch( (error) => {
+                    console.log(error);
+                })
+            
+            res.status(201).send(user) // 201 created
         })
         .catch((error) => {
             // Handle Errors here.
