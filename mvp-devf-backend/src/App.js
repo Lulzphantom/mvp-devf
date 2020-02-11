@@ -1,26 +1,28 @@
+//React imports
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+//Local imports
+import './App.scss';
+import { Nav } from './components/Nav/Nav';
+import { BoardContainer } from './containers/BoardContainer/BoardContainer';
+import { AuthContainer } from './containers/AuthContainer/AuthContainer';
+import { NotFoundContainer } from './containers/NotFoundContainer/NotFoundContainer';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <BrowserRouter>
+                <Nav /> 
+                <Switch>
+                    <Route exact path="/" />
+                    <Route  path="/auth/:auth" component={AuthContainer}/>                
+                    <Route  path="/dashBoard" component={BoardContainer}/>
+                    <Route  path="/notFound/:endPoint" component={NotFoundContainer}/>
+                </Switch>                
+            </BrowserRouter> 
+        </div>
+    );
 }
 
 export default App;
