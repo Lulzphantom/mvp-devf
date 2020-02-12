@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); // enrutador
 const firebase = require('../midlewares/firebase');
 const db = firebase.firestore();
 
@@ -10,21 +10,16 @@ router.get('/', (req, res) => {
 
 // Create
 router.post('/createLink', (req, res) => {
-    const { title, description, url, type, icon, iconColor } = req.body;
-    const uid = firebase.auth().currentUser.uid;
-    db.collection("users").doc(uid).collection('links').add({
-        title,
-        description: description,
-        url: url,
-        type: type,
-        icon: icon,
-        iconColor: iconColor
-    })
-        .then(function(docRef) {
+    // const { title, description, url, type, icon, iconColor } = req.body;
+    // const uid = firebase.auth().currentUser.uid;
+    const { uid } = req.query;
+    const newLink = { ...req.body };
+    db.collection( "users" ).doc( uid ).collection( "links" ).add( newLink )
+        .then( ( docRef ) => {
             console.log("Document written with ID: ", docRef.id);
             res.status(201).send(docRef.id); // 201 created
         })
-        .catch(function(error) {
+        .catch( ( error ) => {
             console.error("Error adding document: ", error);
             res.status(409).send(error); // 409 conflict
         });
@@ -32,14 +27,15 @@ router.post('/createLink', (req, res) => {
 
 // Read
 router.get('/getLinks', (req, res) => {
+    // const uid = firebase.auth().currentUser.uid;
+    const { uid } = req.query;
     let links = [];
-    const uid = firebase.auth().currentUser.uid;
-    db.collection("users").doc(uid).collection('links').get()
+    db.collection( "users" ).doc( uid ).collection( "links" ).get()
         .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
+            querySnapshot.forEach( ( doc ) => {
                 // console.log(`${doc.id}:`);
                 // console.log(doc.data());
-                links.push(doc.data());
+                links.push( doc.data() );
             });
             res.status(200).send(links);
         })
@@ -51,19 +47,13 @@ router.get('/getLinks', (req, res) => {
 // Update
 // completamente el registro
 router.put('/updateLinkById', (req, res) => {
-    const { id } = req.query;
-    const { title, description, url, type, icon, iconColor } = req.body;
-    const uid = firebase.auth().currentUser.uid;
-    if (Object.keys(req.body).length === 6) {
-        let linkRef = db.collection("users").doc(uid).collection('links').doc(id)
-        linkRef.update({
-            title,
-            description,
-            url,
-            type,
-            icon,
-            iconColor
-        })
+    // const { title, description, url, type, icon, iconColor } = req.body;
+    // const uid = firebase.auth().currentUser.uid;
+    const { id, uid } = req.query;
+    const updatedLink = { ...req.body };
+    if ( Object.keys(req.body).length === 6 ) {
+        let linkRef = db.collection( "users" ).doc( uid ).collection( "links" ).doc( id );
+        linkRef.update( updatedLink )
             .then( () => {
                 res.status(202).send(id);
             })
@@ -76,13 +66,13 @@ router.put('/updateLinkById', (req, res) => {
     console.log(Object.keys(req.body).length);
 });
 
-// parcialmente el registro
+// parcialmente el registro (preguntar)
 router.patch('/updateLinkById', (req, res) => {
-    const { id } = req.query;
+    // const uid = firebase.auth().currentUser.uid;
+    const { id, uid } = req.query;
     const { title, description, url, type, icon, iconColor } = req.body;
-    const uid = firebase.auth().currentUser.uid;
-    if (Object.keys(req.body).length < 6 && Object.keys(req.body).length  > 0) {
-        let linkRef = db.collection("users").doc(uid).collection('links').doc(id)
+    if ( Object.keys(req.body).length < 6 && Object.keys(req.body).length  > 0 ) {
+        let linkRef = db.collection( "users" ).doc( uid ).collection( "links" ).doc( id )
         linkRef.update({
             title,
             description,
@@ -105,17 +95,19 @@ router.patch('/updateLinkById', (req, res) => {
 
 // Delete
 router.delete('/deleteLinkById', (req, res) => {
-    const { id } = req.query;
-    const uid = firebase.auth().currentUser.uid;
-    let linkRef = db.collection("users").doc(uid).collection('links').doc(id);
+    // const uid = firebase.auth().currentUser.uid;
+    const { id, uid } = req.query;
+    let linkRef = db.collection( "users" ).doc( uid ).collection( "links" ).doc( id );
 
     linkRef.delete()
         .then( () => {
-            res.status(204).send()
+            console.log("Document successfully deleted!");
+            res.status(204).send({id: id, message: "deleted"})
         })
-        .catch(err => {
+        .catch( err => {
+            console.error("Error removing document: ", err);
             res.status(404).send(err)
-        });
+        }); // note: parece ser que siempre lo borra aunque no exista :/
 });
 
 module.exports = router;

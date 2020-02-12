@@ -14,6 +14,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 // app.use(express.json());
 
+// routes
 app.use('/api/v1/links', links);
 app.use('/api/v1/users', users);
 
