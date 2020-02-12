@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 import FadeIn from 'react-fade-in';
-import { authForm } from '../../components/forms/authForm';
 
 import './authContainer.scss';
+import { AuthForm } from '../../components/forms/authForm';
 
 
 export const AuthContainer = () => {  
@@ -25,7 +25,7 @@ export const AuthContainer = () => {
                         <div className="column is-8-tablet is-5-desktop">
                             <div className="box">
                                 <FadeIn>
-                                    {authForm(auth)}
+                                    {AuthForm(auth)}
                                 </FadeIn>                                
                             </div>                
                         </div>

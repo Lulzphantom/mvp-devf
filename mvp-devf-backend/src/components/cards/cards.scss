@@ -1,4 +1,19 @@
+.iconCard{
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
 .fixedCard{
-    min-height: 200px;
+    min-height: 250px;
     border-radius: 30px;
+}
+
+.cardBox:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+.cardBox:active {
+    background-color:#d1d1d1;
 }
