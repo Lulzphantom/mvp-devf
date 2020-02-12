@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //Local imports
 import './App.scss';
-import { Nav } from './components/Nav/Nav';
+import { Nav } from './components/nav/Nav';
 import { BoardContainer } from './containers/BoardContainer/BoardContainer';
 import { AuthContainer } from './containers/AuthContainer/AuthContainer';
 import { NotFoundContainer } from './containers/NotFoundContainer/NotFoundContainer';

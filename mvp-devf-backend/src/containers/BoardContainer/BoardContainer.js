@@ -6,7 +6,7 @@ export const BoardContainer = () => {
         <section className="hero is-light is-fullheight-with-navbar">
             <div className="hero-body">
                 <div className="container">
-                    <div className="columns is-multiline is-mobile">
+                    <div className="columns is-multiline">
                         <FixedCard />
                         <FixedCard />
                         <FixedCard />
