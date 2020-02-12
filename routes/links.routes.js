@@ -5,7 +5,7 @@ const db = firebase.firestore();
 
 
 router.get('/', (req, res) => {
-    res.status(200).send('links up')
+    res.status(200).send({message: "Server Up"});
 });
 
 // Create

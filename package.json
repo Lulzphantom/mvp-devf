@@ -13,6 +13,6 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "firebase": "^7.8.1",
-    "firebase-admin": "^8.9.2"
+    "morgan": "^1.9.1"
   }
 }
