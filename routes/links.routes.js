@@ -22,7 +22,7 @@ router.post('/createLink', (req, res) => {
     })
         .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
-            res.status(201).send(docRef.id); // 201 created preguntar que mandar aquí
+            res.status(201).send(docRef.id); // 201 created
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
@@ -64,7 +64,7 @@ router.put('/updateLinkById', (req, res) => {
             icon,
             iconColor
         })
-            .then( data => {
+            .then( () => {
                 res.status(202).send(id);
             })
             .catch( err => {
@@ -72,6 +72,33 @@ router.put('/updateLinkById', (req, res) => {
             });
     } else {
         res.status(400).send("Método Incorrecto, intenta utlizar PATCH");
+    }
+    console.log(Object.keys(req.body).length);
+});
+
+// parcialmente el registro
+router.patch('/updateLinkById', (req, res) => {
+    const { id } = req.query;
+    const { title, description, url, type, icon, iconColor } = req.body;
+    const uid = firebase.auth().currentUser.uid;
+    if (Object.keys(req.body).length < 6 && Object.keys(req.body).length  > 0) {
+        let linkRef = db.collection("users").doc(uid).collection('links').doc(id)
+        linkRef.update({
+            title,
+            description,
+            url,
+            type,
+            icon,
+            iconColor
+        })
+            .then( () => {
+                res.status(202).send(id);
+            })
+            .catch( err => {
+                res.status(304).send(err) // not modified
+            });
+    } else {
+        res.status(400).send("Método Incorrecto, intenta utlizar PUT");
     }
     console.log(Object.keys(req.body).length);
 });
