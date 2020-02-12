@@ -8,6 +8,7 @@ import { Nav } from './components/nav/Nav';
 import { BoardContainer } from './containers/BoardContainer/BoardContainer';
 import { AuthContainer } from './containers/AuthContainer/AuthContainer';
 import { NotFoundContainer } from './containers/NotFoundContainer/NotFoundContainer';
+import { LinksCardContainer } from './containers/LinksCardContainer/LinksCardContainer';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route exact path="/" />
                     <Route  path="/auth/:auth" component={AuthContainer}/>                
                     <Route  path="/dashBoard" component={BoardContainer}/>
+                    <Route  path="/links/:type" component={LinksCardContainer}/>
                     <Route  path="/notFound/:endPoint" component={NotFoundContainer}/>
                 </Switch>                
             </BrowserRouter> 
