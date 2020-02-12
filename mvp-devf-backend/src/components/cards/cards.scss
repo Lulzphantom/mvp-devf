@@ -6,6 +6,7 @@
 
 .fixedCard{
     min-height: 250px;
+    max-height: 250px;
     border-radius: 30px;
 }
 
@@ -17,3 +18,34 @@
 .cardBox:active {
     background-color:#d1d1d1;
 }
+
+.cardContainer:hover > .cardFunctions {
+    visibility: visible;
+    
+}
+
+.cardFunctions{
+    visibility: hidden;
+    margin-top: 30px;
+    margin-right: 5px;
+    flex-direction: column;
+    max-height: min-content;
+}
+
+.cardFunction{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;   
+    padding: 18px; 
+}
+
+.cardFunction:hover{
+    background: white;
+    cursor: pointer;    
+    box-shadow: 7px 0px 5px 1px rgba(0,0,0,0.10);
+}
+
+.cardFunction:active{
+    background: #d1d1d1;
+}
+
+

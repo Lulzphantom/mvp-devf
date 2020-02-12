@@ -10,7 +10,7 @@ export const BoardContainer = () => {
                         <FixedCard title='Administrador web' description='Hosting, woocomerce y mas' icon='fas fa-laptop'/>
                         <FixedCard title='Email marketing' description='Google, hotmail ...' icon='fas fa-mail-bulk'/>
                         <FixedCard title='CMR' description='customer relationship management' icon='fas fa-users-cog'/>
-                        <FixedCard title='Redes sociales' description='test' icon='fas user-ninja'/>
+                        <FixedCard title='Redes sociales' description='Facebook, instagram...' icon='fas user-ninja'/>
                         <FixedCard title='Analitica' description='test' icon='fas user-ninja'/>
                         <FixedCard title='Publicidad online' description='test' icon='fas user-ninja'/>
                         <FixedCard title='Marketplace' description='test' icon='fas user-ninja'/>

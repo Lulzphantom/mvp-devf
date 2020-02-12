@@ -1,19 +1,24 @@
 import React, {useState} from 'react';
 import Swal from 'sweetalert2';
-import './authForm.scss';
+import './authForm.scss';  
 
-export const AuthForm = (typeForm) => {
+export const AuthForm = (props) => {
+
+    const {typeForm} = props;
 
     const [loading, setLoading] = useState(false);
 
-    const caption = typeForm === 'login' ? 'Iniciar sesión': 'Crear cuenta';         
+    const caption = typeForm === 'login' ? 'Iniciar sesión': 'Crear cuenta';        
     
-    const authAction = () => {
+
+    const authAction = () => {  
         if (typeForm === 'login') {
             //Login
             window.location.assign('/dashBoard');
+            //Swal.fire("Error al iniciar sesión", "", "error")
         }else{
-            //Register
+            //Register            
+            //Swal.fire("Error al crear cuenta", "", "error")
 
         }
     }

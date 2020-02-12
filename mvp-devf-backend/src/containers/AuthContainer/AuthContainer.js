@@ -18,14 +18,16 @@ export const AuthContainer = () => {
     }
 
     return (
-        <section className="hero is-light is-fullheight-with-navbar">
+        <section className="hero authHero is-light is-fullheight-with-navbar">
             <div className="hero-body">
                 <div className="container">
                     <div className="columns is-centered">
                         <div className="column is-8-tablet is-5-desktop">
                             <div className="box">
                                 <FadeIn>
-                                    {AuthForm(auth)}
+                                    <AuthForm 
+                                        typeForm={auth}
+                                    />
                                 </FadeIn>                                
                             </div>                
                         </div>

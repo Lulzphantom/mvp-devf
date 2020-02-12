@@ -10,11 +10,11 @@ export const FixedCard = (props) => {
         <div className="column is-one-quarter-desktop is-two-thirds-tablet is-three-quarters-mobile">
             <FadeIn transitionDuration={1000}>               
                 <Link to={`/links/${props.title}`} className="box cardBox fixedCard has-text-centered">
-                    <span class="icon iconCard is-large has-text-info">
-                        <i class={`${props.icon}`}></i>
+                    <span className="icon iconCard is-large has-text-info">
+                        <i className={`${props.icon}`}></i>
                     </span>
-                    <h1 class="title is-4 center">{props.title}</h1>                
-                    <h2 class="subtitle has-text-info">{props.description}</h2>
+                    <h1 className="title is-4 center">{props.title}</h1>                
+                    <h2 className="subtitle has-text-info">{props.description}</h2>
                 </Link>
             </FadeIn>    
         </div>

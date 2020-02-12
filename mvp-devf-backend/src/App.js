@@ -16,7 +16,7 @@ function App() {
             <BrowserRouter>
                 <Nav /> 
                 <Switch>
-                    <Route exact path="/" />
+                    <Route exact path="/:" />
                     <Route  path="/auth/:auth" component={AuthContainer}/>                
                     <Route  path="/dashBoard" component={BoardContainer}/>
                     <Route  path="/links/:type" component={LinksCardContainer}/>
