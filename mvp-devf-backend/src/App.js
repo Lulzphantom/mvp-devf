@@ -17,7 +17,7 @@ function App() {
                 <Nav user={''} /> 
                 <Route path="/"/>
                 <Route path="/auth/:auth" component={AuthContainer}/>                
-                <Route path="/dashBoard" component={BoardContainer}/>
+                <Route path="/dashboard" component={BoardContainer}/>
                 <Route path="/links/:type" render={(props) => <LinksCardContainer {...props} user={{id: 1}} />} />                    
                 <Route path="/notFound/:endPoint" component={NotFoundContainer}/>                
             </BrowserRouter> 

@@ -9,12 +9,12 @@ export const DynamicCard = (props) => {
 
     const deleteLink = (title) => {
         Swal.fire({
-            title: `Desea eliminar '${title}'?`,
-            text: "Se eliminara el enlace de forma permanente!",
+            title: `¿Desea eliminar '${title}'?`,
+            text: "¡Se eliminará el enlace de forma permanente!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
-            confirmButtonText: 'Eliminar!',
+            confirmButtonText: '¡Eliminar!',
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.value) {

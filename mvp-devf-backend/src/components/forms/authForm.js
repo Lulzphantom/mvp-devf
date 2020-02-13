@@ -13,10 +13,10 @@ export const AuthForm = (props) => {
 
     const authAction = () => {  
         if (typeForm === 'login') {
-            //Login
-            window.location.assign('/dashBoard');
+            //TODO Firebase login function
+            window.location.assign('/dashboard');
         }else{
-            //Register            
+            //TODO Firebase register function           
 
         }
     }

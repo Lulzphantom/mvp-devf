@@ -52,7 +52,7 @@ export const LinksCardContainer = (props) => {
                 <div className="container">
                     <div className="columns">
                         <div className="column">
-                            <Link to="/dashBoard" className="button is-link is-outlined is-rounded">
+                            <Link to="/dashboard" className="button is-link is-outlined is-rounded">
                                 <span className="icon is-small">
                                     <i className="fas fa-arrow-left"></i>
                                 </span>
@@ -62,8 +62,14 @@ export const LinksCardContainer = (props) => {
                         <div className="column is-full">
                             <h1 className="title">
                                 - {type}
-                            </h1>
-                        </div>                       
+                            </h1>                             
+                        </div>
+                        {
+                            link.length === 0 && !add? 
+                            <div class="button is-loading is-rounded is-link"></div> 
+                            :
+                            null
+                        }   
                         
                     </div>                                        
                     <div className="columns is-multiline contCards">
