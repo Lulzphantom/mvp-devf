@@ -30,7 +30,9 @@ router.get('/getLinks', (req, res) => {
     db.collection( "users" ).doc( uid ).collection( "links" ).get()
         .then((querySnapshot) => {
             querySnapshot.forEach( ( doc ) => {
-                links.push( doc.data() );
+                let id = doc.id;
+                let link = { id, ...doc.data() };
+                links.push( link );
             });
             res.status(200).send(links);
         })
@@ -41,6 +43,7 @@ router.get('/getLinks', (req, res) => {
 
 router.get('/getLinkById', (req, res) => {
     const { id, uid } = req.query;
+    let link = {};
     let linkRef = db.collection( "users" ).doc( uid ).collection( "links" ).doc( id );
     let getDoc = linkRef.get()
         .then(doc => {
@@ -48,8 +51,10 @@ router.get('/getLinkById', (req, res) => {
                 console.log('No such document!');
                 res.status(404).send('No such document!');
             } else {
-                console.log('Document data:', doc.data()); 
-                res.status(200).send(doc.data());
+                let id = doc.id;
+                link = { id, ...doc.data() };
+                console.log('Document data:', link); 
+                res.status(200).send( link );
             }
         })
         .catch(err => {
@@ -71,7 +76,10 @@ router.get('/getLinksByType', (req, res) => {
             }
 
             snapshot.forEach(doc => {
-                links.push( doc.data() );
+                console.log(doc.id, '=>', doc.data());
+                let id = doc.id;
+                let link = { id, ...doc.data() };
+                links.push( link );
             });
             res.status(200).send(links);
         })
@@ -135,7 +143,7 @@ router.delete('/deleteLinkById', (req, res) => {
     linkRef.delete()
         .then( () => {
             console.log("Document successfully deleted!");
-            res.status(204).send({id: id, message: "deleted"})
+            res.status(204).send( { id, message: "deleted" } )
         })
         .catch( err => {
             console.error("Error removing document: ", err);
