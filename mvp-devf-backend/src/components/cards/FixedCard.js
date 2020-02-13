@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import './cards.scss';
 
 export const FixedCard = (props) => {
-    
+
     return (
         <div className="column is-one-quarter-desktop is-two-thirds-tablet is-three-quarters-mobile">
-            <FadeIn transitionDuration={1000}>               
+            <FadeIn transitionDuration={700}>               
                 <Link to={`/links/${props.title}`} className="box cardBox fixedCard has-text-centered">
                     <span className="icon iconCard is-large has-text-info">
                         <i className={`${props.icon}`}></i>

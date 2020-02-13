@@ -7,7 +7,14 @@
 .fixedCard{
     min-height: 250px;
     max-height: 250px;
+    min-width: 250px;
     border-radius: 30px;
+}
+
+.addCard{
+    min-height: 250px;
+    max-height: 250px;
+    border-bottom-right-radius: 150px;
 }
 
 .cardBox:hover {

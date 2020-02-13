@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import { DynamicCard } from '../../components/cards/DynamicCard';
 
 import './linksCardContainer.scss';
+import { AddCard } from '../../components/cards/AddCard';
 
 export const LinksCardContainer = () => {
     
     const cards = [];
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 6; i++) {
         cards.push(i);
         
     }
@@ -45,6 +46,7 @@ export const LinksCardContainer = () => {
                             description='probando descripcion tarjeta dinamica'
                             />
                         ))}
+                        <AddCard />
                     </div>                    
                 </div>
             </div>
