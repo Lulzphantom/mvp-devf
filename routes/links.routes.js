@@ -43,6 +43,7 @@ router.get('/getLinks', (req, res) => {
             res.status(404).send(error);
         });
 });
+
 router.get('/getLinkById', (req, res) => {
     const { id, uid } = req.query;
     let linkRef = db.collection( "users" ).doc( uid ).collection( "links" ).doc( id );
@@ -58,6 +59,30 @@ router.get('/getLinkById', (req, res) => {
         })
         .catch(err => {
             console.log('Error getting document', err);
+            res.status(404).send(err);
+        });
+})
+
+router.get('/getLinksByType', (req, res) => {
+    const { uid, type } = req.query;
+    let links = [];
+    let linksRef = db.collection( "users" ).doc( uid ).collection( "links" );
+    let query = linksRef.where('type', '==', type).get()
+        .then(snapshot => {
+            if (snapshot.empty) {
+                console.log('No matching documents.');
+                res.status(404).send('No matching documents.');
+                return;
+            }
+
+            snapshot.forEach(doc => {
+                // console.log(doc.id, '=>', doc.data());
+                links.push( doc.data() );
+            });
+            res.status(200).send(links);
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
             res.status(404).send(err);
         });
 })
