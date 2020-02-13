@@ -43,6 +43,24 @@ router.get('/getLinks', (req, res) => {
             res.status(404).send(error);
         });
 });
+router.get('/getLinkById', (req, res) => {
+    const { id, uid } = req.query;
+    let linkRef = db.collection( "users" ).doc( uid ).collection( "links" ).doc( id );
+    let getDoc = linkRef.get()
+        .then(doc => {
+            if (!doc.exists) {
+                console.log('No such document!');
+                res.status(404).send('No such document!');
+            } else {
+                console.log('Document data:', doc.data()); 
+                res.status(200).send(doc.data());
+            }
+        })
+        .catch(err => {
+            console.log('Error getting document', err);
+            res.status(404).send(err);
+        });
+})
 
 // Update
 // completamente el registro
