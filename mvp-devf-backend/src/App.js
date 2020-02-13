@@ -1,6 +1,6 @@
 //React imports
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 //Local imports
 import './App.scss';
@@ -14,14 +14,12 @@ function App() {
     return (
         <div>
             <BrowserRouter>
-                <Nav /> 
-                <Switch>
-                    <Route exact path="/:" />
-                    <Route  path="/auth/:auth" component={AuthContainer}/>                
-                    <Route  path="/dashBoard" component={BoardContainer}/>
-                    <Route  path="/links/:type" component={LinksCardContainer}/>
-                    <Route  path="/notFound/:endPoint" component={NotFoundContainer}/>
-                </Switch>                
+                <Nav user={''} /> 
+                <Route path="/"/>
+                <Route path="/auth/:auth" component={AuthContainer}/>                
+                <Route path="/dashBoard" component={BoardContainer}/>
+                <Route path="/links/:type" render={(props) => <LinksCardContainer {...props} user={{id: 1}} />} />                    
+                <Route path="/notFound/:endPoint" component={NotFoundContainer}/>                
             </BrowserRouter> 
         </div>
     );

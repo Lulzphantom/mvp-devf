@@ -15,10 +15,8 @@ export const AuthForm = (props) => {
         if (typeForm === 'login') {
             //Login
             window.location.assign('/dashBoard');
-            //Swal.fire("Error al iniciar sesión", "", "error")
         }else{
             //Register            
-            //Swal.fire("Error al crear cuenta", "", "error")
 
         }
     }

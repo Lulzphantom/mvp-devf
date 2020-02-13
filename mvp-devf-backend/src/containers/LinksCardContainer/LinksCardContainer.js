@@ -1,24 +1,53 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Component} from 'react';
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
-import { DynamicCard } from '../../components/cards/DynamicCard';
+import Swal from 'sweetalert2';
 
 import './linksCardContainer.scss';
+import { DynamicCard } from '../../components/cards/DynamicCard';
 import { AddCard } from '../../components/cards/AddCard';
+import LinkApi from '../../modules/linksApi';
 
-export const LinksCardContainer = () => {
+export const LinksCardContainer = (props) => {
     
-    const cards = [];
-
-    for (let i = 0; i < 6; i++) {
-        cards.push(i);
-        
-    }
-
+    //get params
     const {type} = useParams();
 
+    const [link, setLink] = useState([]);
+
+    const [add, setAdd] = useState(false);
+
+    useEffect(() => {
+        let linkRequest = new LinkApi().getLinksByType(type, props.user.id)
+        linkRequest
+            .then((linkData) => {                
+                setLink(linkData.data);    
+                setAdd(true);            
+            }).catch((err) => {
+                console.log(`Error: ${err}`);    
+                if (err.response.status === 404) {
+                    setAdd(true);  
+                }else{
+                    setLink([{title: err.response.status, icon: 'fas fa-exclamation-circle', iconColor: 'danger', description: err.message}]);
+                }
+                
+            });
+    }, []);
+
+    // Delete link item
+    const onDelete = (id) => {
+        new LinkApi().deleteLinkById(id, props.user.id)
+            .then((result) => {
+                const newLink = link.filter(x => x.id !== id);
+                setLink(newLink);  
+            }).catch((err) => {
+                Swal.fire("Error",err,"error")
+            });
+            
+    }    
+
     return (
-        <section className="hero is-light is-fullheight-with-navbar">           
+        <section className="authHero hero is-light is-fullheight-with-navbar heroLinks">         
             <div className="hero-body">               
                 <div className="container">
                     <div className="columns">
@@ -38,15 +67,23 @@ export const LinksCardContainer = () => {
                         
                     </div>                                        
                     <div className="columns is-multiline contCards">
-                        {cards.map(data => (
+                        
+                        {  // Cards
+                            link !== null ? link.map(data => (                            
                             <DynamicCard 
-                            color='info'
-                            icon='fas fa-address-card'
-                            title='Hola soy un titulo tarjeta dinamica'
-                            description='probando descripcion tarjeta dinamica'
+                            key={data.id}
+                            id={data.id}
+                            title={data.title}
+                            description={data.description}
+                            link={data.url}
+                            icon={data.icon}
+                            color={data.iconColor}
+                            onDelete={onDelete}
                             />
-                        ))}
-                        <AddCard />
+                        )) : null}
+
+                        { // Add card, called when link state update
+                            add === true ? <AddCard /> : null}                        
                     </div>                    
                 </div>
             </div>

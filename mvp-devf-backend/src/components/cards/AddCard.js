@@ -13,7 +13,7 @@ export const AddCard = () => {
                     <span className={`icon iconCard is-large has-text-success`}>
                         <i className="fas fa-plus-circle"></i>
                     </span>
-                    <h1 className="title is-4 center has-text-success">Agregar enlace</h1>
+                    <h1 className="title is-4 center has-text-success">Agregar nuevo enlace</h1>
                 </Link>
             </div>
         </FadeIn>    
