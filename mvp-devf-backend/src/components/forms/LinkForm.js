@@ -33,7 +33,6 @@ export const LinkForm = (props) => {
             api.updateLinkById(id,props.uid,inputValue)
                 .then((result) => {
                     setRedirect(true);
-                    // window.location.assign(`/links/${type}`);
                 }).catch((err) => {
                     console.log(err);
                     Swal.fire('Error',err.message,'error');
@@ -44,7 +43,6 @@ export const LinkForm = (props) => {
             api.createLink(inputValue,props.uid)
                 .then((result) => {
                     setRedirect(true);
-                    // window.location.assign(`/links/${type}`);
                 }).catch((err) => {
                     Swal.fire('Error',err.message,'error');
                 });
@@ -84,13 +82,15 @@ export const LinkForm = (props) => {
                         </span>
                         </div>
                     </div>    
-                    <div className="field">
-                        <label className="label">Icon</label>
-                        <div className="control has-icons-left">
-                        <input value={inputValue.icon} onChange={handleChange.bind(this)} id="icon" type="text" placeholder="Fontawesome icon" className="input is-rounded" required />
-                        <span className="icon is-small is-left">
-                            <i className="fab fa-font-awesome-alt"></i>
-                        </span>
+                    <label className="label">Icon</label>
+                    <div className="field has-addons">                        
+                        <div className="control">
+                            <input value={inputValue.icon} onChange={handleChange.bind(this)} id="icon" type="text" placeholder="Fontawesome icon" className="input is-rounded" required />
+                        </div>
+                        <div className="control">
+                            <a className="button is-info" href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">
+                                buscar en Font Awesome
+                            </a>
                         </div>
                     </div>     
                     <div className="field">

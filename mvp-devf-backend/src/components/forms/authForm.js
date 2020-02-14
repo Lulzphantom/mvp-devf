@@ -33,7 +33,7 @@ export const AuthForm = (props, { history }) => {
         setLoading('is-loading');
 
         if (typeForm === 'login') {
-            //TODO Firebase login function
+            //Firebase login function
             app.auth().signInWithEmailAndPassword(userValues.email,userValues.password)
                 .then((result) => {
                     return <Redirect to="/dashboard" />;
