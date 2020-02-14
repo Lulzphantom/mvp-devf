@@ -1,24 +1,29 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Auth';
 
 import './linksCardContainer.scss';
 import { DynamicCard } from '../../components/cards/DynamicCard';
 import { AddCard } from '../../components/cards/AddCard';
 import LinkApi from '../../modules/linksApi';
 
-export const LinksCardContainer = (props) => {
-    
+
+export const LinksCardContainer = () => {
+
+    const { currentUser } = useContext(AuthContext);
+
     //get params
     const {type} = useParams();
 
     const [link, setLink] = useState([]);
 
-    const [add, setAdd] = useState(false);
+    const [add, setAdd] = useState(false);    
 
     useEffect(() => {
-        let linkRequest = new LinkApi().getLinksByType(type, props.user.id)
+        if (currentUser) {
+            let linkRequest = new LinkApi().getLinksByType(type, currentUser.uid)
         linkRequest
             .then((linkData) => {                
                 setLink(linkData.data);    
@@ -32,11 +37,12 @@ export const LinksCardContainer = (props) => {
                 }
                 
             });
+        }        
     }, []);
 
     // Delete link item
     const onDelete = (id) => {
-        new LinkApi().deleteLinkById(id, props.user.id)
+        new LinkApi().deleteLinkById(id, currentUser.uid)
             .then((result) => {
                 const newLink = link.filter(x => x.id !== id);
                 setLink(newLink);  

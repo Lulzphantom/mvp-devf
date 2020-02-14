@@ -6,8 +6,8 @@
 
 .fixedCard{
     min-height: 250px;
-    max-height: 250px;
-    min-width: 250px;    
+    max-height: 250px; 
+    min-width: 250px;
     border-radius: 30px;
 }
 
@@ -32,6 +32,7 @@
 }
 
 .cardFunctions{
+    max-width: 60px;
     visibility: hidden;
     margin-top: 30px;
     margin-right: 5px;

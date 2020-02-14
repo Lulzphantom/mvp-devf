@@ -19,7 +19,7 @@ export default class LinkApi{
 
     // Edit user link by id
     updateLinkById = (linkId, userId, linkObject) => {
-        return axios.patch(`${linksApiUrl}/updateLinkById?uid=${userId}&id=${linkId}`, linkObject);
+        return axios.put(`${linksApiUrl}/updateLinkById?uid=${userId}&id=${linkId}`, linkObject);
     }
 
     // Delete

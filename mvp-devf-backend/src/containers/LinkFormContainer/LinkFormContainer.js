@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import FadeIn from 'react-fade-in';
 import  { LinkForm } from '../../components/forms/LinkForm';
 import { useParams } from 'react-router-dom';
 
 import LinkApi from '../../modules/linksApi';
+import { AuthContext } from '../../Auth';
 
 export const LinkFormContainer = (props) =>{
 
@@ -11,9 +12,12 @@ export const LinkFormContainer = (props) =>{
 
     const [link, setLink] = useState([]);
 
+    const { currentUser } = useContext(AuthContext);
+
+    //Get link data
     useEffect(() => {
         if (action === 'edit') {
-            new LinkApi().getLinkById(id,props.user.id)
+            new LinkApi().getLinkById(id,currentUser.uid)
                 .then((result) => {
                     setLink(result.data);
                 }).catch((err) => {
@@ -21,8 +25,6 @@ export const LinkFormContainer = (props) =>{
                 });
         }        
     }, []);
-
-    //Get link data
 
 
     return (
@@ -42,13 +44,13 @@ export const LinkFormContainer = (props) =>{
                                 <LinkForm
                                     id={id}
                                     title={link.title}
-                                    type={link.type}
                                     description={link.description}
-                                    link={link.url}
+                                    url={link.url}
                                     icon={link.icon}
-                                    color={link.iconColor}
+                                    iconColor={action == 'edit' ? link.iconColor : 'primary'}
                                     type={type}
                                     action={action}
+                                    uid={currentUser.uid}
                                 /> 
                             </FadeIn> 
                         }                                                                          
