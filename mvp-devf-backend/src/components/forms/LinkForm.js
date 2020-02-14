@@ -1,35 +1,38 @@
 import React from 'react';
 import './linkForm.scss';
 
+import { Link } from 'react-router-dom';
 
-export const LinkForm = () => {
+export const LinkForm = (props) => {
+
+  const {id, title, description, icon, color, link, type, action} = props;
 
   return (
     <form>
       <div className="field">
         <label for="" className="label">Título</label>
         <div className="control has-icons-left">
-          <input type="text" placeholder="Título" className="input is-rounded" required />
+          <input value={title} type="text" placeholder="Título" className="input is-rounded" required />
           <span className="icon is-small is-left">
-            <i class="fas fa-heading"></i>
+            <i className="fas fa-heading"></i>
           </span>
         </div>
       </div>
       <div className="field">
         <label for="" className="label">Descripción</label>
         <div className="control has-icons-left">
-          <input type="text" placeholder="Descripción" className="input is-rounded" required />
+          <input value={description} type="text" placeholder="Descripción" className="input is-rounded" required />
           <span className="icon is-small is-left">
-            <i class="fas fa-audio-description"></i>
+            <i className="fas fa-audio-description"></i>
           </span>
         </div>
       </div>
       <div className="field">
         <label for="" className="label">URL</label>
         <div className="control has-icons-left">
-          <input type="text" placeholder="URL" className="input is-rounded" required />
+          <input value={link} type="text" placeholder="URL" className="input is-rounded" required />
           <span className="icon is-small is-left">
-            <i class="fas fa-cloud"></i>
+            <i className="fas fa-cloud"></i>
           </span>
         </div>
       </div>
@@ -48,7 +51,7 @@ export const LinkForm = () => {
         <label className="label">Color</label>
         <div className="control has-icons-left  ">
           <div className="select  is-primary is-rounded is-small" onfocus='this.size=10;' onblur='this.size=0;' 
-            onchange='this.size=1; this.blur();'>
+            onChange='this.size=1; this.blur();'>
             <select>
               <option value="info" className="has-background-info">Azul</option>
               <option value="success" className="has-background-success">Verde</option>
@@ -64,10 +67,10 @@ export const LinkForm = () => {
 
       <div className="field is-grouped flex">
         <div className="control">
-          <button className="button is-info is-rounded">AGREGAR</button>
+          <button className="button is-info is-rounded">{action === 'edit' ? 'Guardar' : 'Agregar'}</button>
         </div>
         <div className="control">
-          <button className="button is-link is-light is-rounded">CANCELAR</button>
+          <Link to={`/links/${props.type}`} className="button is-link is-light is-rounded">Cancelar</Link>
         </div>
       </div>
 

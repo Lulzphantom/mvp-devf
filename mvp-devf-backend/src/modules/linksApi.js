@@ -13,8 +13,8 @@ export default class LinkApi{
     }
 
     //Get user Link by id
-    getLinkById = (linkId) => {
-        return axios.get(`${linksApiUrl}/getLinkById?id=${linkId}`);
+    getLinkById = (linkId, userId) => {
+        return axios.get(`${linksApiUrl}/getLinkById?id=${linkId}&uid=${userId}`);
     }
 
     // Edit user link by id
