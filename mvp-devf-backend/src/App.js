@@ -7,8 +7,10 @@ import './App.scss';
 import { Nav } from './components/nav/Nav';
 import { BoardContainer } from './containers/BoardContainer/BoardContainer';
 import { AuthContainer } from './containers/AuthContainer/AuthContainer';
+import {LinkFormContainer} from './containers/LinkFormContainer/LinkFormContainer';
 import { NotFoundContainer } from './containers/NotFoundContainer/NotFoundContainer';
 import { LinksCardContainer } from './containers/LinksCardContainer/LinksCardContainer';
+
 
 function App() {
     return (
