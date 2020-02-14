@@ -1,24 +1,29 @@
-import React, {useState, useEffect, Component} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Auth';
 
 import './linksCardContainer.scss';
 import { DynamicCard } from '../../components/cards/DynamicCard';
 import { AddCard } from '../../components/cards/AddCard';
 import LinkApi from '../../modules/linksApi';
 
-export const LinksCardContainer = (props) => {
-    
+
+export const LinksCardContainer = () => {
+
+    const { currentUser } = useContext(AuthContext);
+
     //get params
     const {type} = useParams();
 
     const [link, setLink] = useState([]);
 
-    const [add, setAdd] = useState(false);
+    const [add, setAdd] = useState(false);    
 
     useEffect(() => {
-        let linkRequest = new LinkApi().getLinksByType(type, props.user.id)
+        if (currentUser) {
+            let linkRequest = new LinkApi().getLinksByType(type, currentUser.uid)
         linkRequest
             .then((linkData) => {                
                 setLink(linkData.data);    
@@ -32,11 +37,12 @@ export const LinksCardContainer = (props) => {
                 }
                 
             });
+        }        
     }, []);
 
     // Delete link item
     const onDelete = (id) => {
-        new LinkApi().deleteLinkById(id, props.user.id)
+        new LinkApi().deleteLinkById(id, currentUser.uid)
             .then((result) => {
                 const newLink = link.filter(x => x.id !== id);
                 setLink(newLink);  
@@ -50,7 +56,7 @@ export const LinksCardContainer = (props) => {
         <section className="authHero hero is-light is-fullheight-with-navbar heroLinks">         
             <div className="hero-body">               
                 <div className="container">
-                    <div className="columns">
+                    <div className="columns">                        
                         <div className="column">
                             <Link to="/dashboard" className="button is-link is-outlined is-rounded">
                                 <span className="icon is-small">
@@ -63,16 +69,16 @@ export const LinksCardContainer = (props) => {
                             <h1 className="title">
                                 - {type}
                             </h1>                             
-                        </div>
-                        {
-                            link.length === 0 && !add? 
-                            <div class="button is-loading is-rounded is-link"></div> 
-                            :
-                            null
-                        }   
+                        </div>                         
                         
                     </div>                                        
                     <div className="columns is-multiline contCards">
+                        {
+                            link.length === 0 && !add? 
+                            <div className="button is-loading is-rounded is-link"></div>                         
+                            :
+                            null
+                        }  
                         
                         {  // Cards
                             link !== null ? link.map(data => (                            
@@ -80,6 +86,7 @@ export const LinksCardContainer = (props) => {
                             key={data.id}
                             id={data.id}
                             title={data.title}
+                            type={data.type}
                             description={data.description}
                             link={data.url}
                             icon={data.icon}
@@ -89,7 +96,10 @@ export const LinksCardContainer = (props) => {
                         )) : null}
 
                         { // Add card, called when link state update
-                            add === true ? <AddCard /> : null}                        
+                            add === true ?
+                                <AddCard 
+                                type={type}                            
+                            /> : null}                        
                     </div>                    
                 </div>
             </div>

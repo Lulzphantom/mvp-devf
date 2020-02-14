@@ -13,7 +13,7 @@ export const AuthContainer = () => {
     const {auth} = useParams();
 
     //Check params
-    if (auth !== 'login' && auth !== 'createAccount') {
+    if (auth !== 'login' && auth !== 'createAccount' && auth !== undefined) {
         window.location.assign(`/notFound/${auth}`);
         return;
     }

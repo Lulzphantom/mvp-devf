@@ -13,13 +13,13 @@ export default class LinkApi{
     }
 
     //Get user Link by id
-    getLinkById = (linkId) => {
-        return axios.get(`${linksApiUrl}/getLinkById?id=${linkId}`);
+    getLinkById = (linkId, userId) => {
+        return axios.get(`${linksApiUrl}/getLinkById?id=${linkId}&uid=${userId}`);
     }
 
     // Edit user link by id
     updateLinkById = (linkId, userId, linkObject) => {
-        return axios.patch(`${linksApiUrl}/updateLinkById?uid=${userId}&id=${linkId}`, linkObject);
+        return axios.put(`${linksApiUrl}/updateLinkById?uid=${userId}&id=${linkId}`, linkObject);
     }
 
     // Delete

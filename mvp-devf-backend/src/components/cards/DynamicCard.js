@@ -35,7 +35,7 @@ export const DynamicCard = (props) => {
                     <h2 className={`subtitle has-text-${props.color}`}>{props.description}</h2>
                 </a>
                 <div className="cardFunctions">
-                    <Link to='' className="icon cardFunction has-text-info"><i className="fas fa-edit"></i></Link>
+                    <Link to={`/links/${props.type}/action/edit/${props.id}`} className="icon cardFunction has-text-info"><i className="fas fa-edit"></i></Link>
                     <div onClick={deleteLink.bind(this, props.title)} className="icon cardFunction has-text-danger"><i className="fas fa-trash"></i></div>  
                 </div>  
             </div>
