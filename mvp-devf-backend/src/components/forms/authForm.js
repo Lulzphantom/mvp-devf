@@ -1,19 +1,22 @@
 import React, {useState} from 'react';
 import Swal from 'sweetalert2';
-import './authForm.scss';
+import './authForm.scss';  
 
-export const authForm = (typeForm) => {
+export const AuthForm = (props) => {
 
-    // const [loading, setLoading] = useState('');
+    const {typeForm} = props;
 
-    const caption = typeForm == 'login' ? 'Iniciar sesión': 'Crear cuenta';         
+    const [loading, setLoading] = useState(false);
+
+    const caption = typeForm === 'login' ? 'Iniciar sesión': 'Crear cuenta';        
     
-    const authAction = () => {
+
+    const authAction = () => {  
         if (typeForm === 'login') {
-            //Login
-            window.location.assign('/dashBoard');
+            //TODO Firebase login function
+            window.location.assign('/dashboard');
         }else{
-            //Register
+            //TODO Firebase register function           
 
         }
     }
@@ -26,7 +29,7 @@ export const authForm = (typeForm) => {
             <form>
 
                 {// Register displayName
-                    typeForm != 'login' ?
+                    typeForm !== 'login' ?
                         <div className="field">
                         <label for="" className="label">Nombre</label>
                             <div className="control has-icons-left">
@@ -58,7 +61,7 @@ export const authForm = (typeForm) => {
                 </div>
 
                 {// Register password check
-                    typeForm != 'login' ? 
+                    typeForm !== 'login' ? 
                     <div className="field">
                         <label for="" className="label">Confirmar contraseña</label>
                         <div className="control has-icons-left">
@@ -72,7 +75,7 @@ export const authForm = (typeForm) => {
 
 
                 <div className="field">
-                    {/* <button onClick={() => setLoading('is-loading')} className={`button is-info is-rounded is-fullwidth inputMargin ${loading}`}>{caption}</button> */}
+                    <button onClick={() => setLoading('is-loading')} className={`button is-info is-rounded is-fullwidth inputMargin ${loading}`}>{caption}</button>
                     <button onClick={authAction.bind(this)} className={`button is-info is-rounded is-fullwidth inputMargin`}>{caption}</button>
                 </div>
             </form>            
