@@ -9,6 +9,7 @@
     max-height: 250px; 
     min-width: 250px;
     border-radius: 30px;
+    box-shadow:  0 0.5em 1em -0.125em rgba(10, 10, 10, 0.04), 0 0px 0 1px rgba(0, 118, 253, 0) !important;   
 }
 
 .addCard{      
@@ -18,7 +19,7 @@
 
 .cardBox:hover {
     background-color: #f0f0f0; 
-    box-shadow:  0 0.5em 1em -0.125em rgba(10, 10, 10, 0.3), 0 0px 0 1px rgba(0, 118, 253, 0.5) !important;   
+    box-shadow:  0 0.5em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(0, 118, 253, 0.2) !important;   
     cursor: pointer;
 }
 
