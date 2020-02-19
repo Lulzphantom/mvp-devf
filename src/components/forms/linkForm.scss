@@ -1,0 +1,20 @@
+.flex{
+    justify-content: center !important;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    
+}
+
+.bd-color {
+    border-radius: 2px;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.1), inset 0 0 0 1px rgba(0,0,0,.1);
+    display: inline-block;
+    float: right;
+    height: 24px;
+    margin-left: 8px;
+    width: 24px;
+}
+
+.bd-color:hover{
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2), inset 0 0 0 1px rgba(0,0,0,.2);
+}

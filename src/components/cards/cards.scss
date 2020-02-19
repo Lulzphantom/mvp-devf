@@ -1,0 +1,59 @@
+.iconCard{
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.fixedCard{
+    min-height: 250px;
+    max-height: 250px; 
+    min-width: 250px;
+    border-radius: 30px;
+    box-shadow:  0 0.5em 1em -0.125em rgba(10, 10, 10, 0.04), 0 0px 0 1px rgba(0, 118, 253, 0) !important;   
+}
+
+.addCard{      
+    border-bottom-right-radius: 150px;
+    margin-right: 50px;
+}
+
+.cardBox:hover {
+    background-color: #f0f0f0; 
+    box-shadow:  0 0.5em 1em -0.125em rgba(10, 10, 10, 0.2), 0 0px 0 1px rgba(0, 118, 253, 0.2) !important;   
+    cursor: pointer;
+}
+
+.cardBox:active {
+    background-color:#dddddd;
+}
+
+.cardContainer:hover > .cardFunctions {
+    visibility: visible;
+    
+}
+
+.cardFunctions{
+    max-width: 60px;
+    visibility: hidden;
+    margin-top: 30px;
+    margin-right: 5px;
+    flex-direction: column;
+}
+
+.cardFunction{
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;   
+    padding: 18px; 
+}
+
+.cardFunction:hover{
+    background: white;
+    cursor: pointer;    
+    box-shadow: 7px 0px 5px 1px rgba(0,0,0,0.10);
+}
+
+.cardFunction:active{
+    background: #d1d1d1;
+}
+
+
